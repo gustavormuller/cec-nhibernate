@@ -17,7 +17,7 @@ namespace fluentNhibernateautoplay.infra
         public static ISession getSession()
         {
             sessionFactory = Fluently.Configure().Database(
-                    MySQLConfiguration.Standard.ConnectionString("server-localhost;Port-3306;Database-nhibernate;Uid-root;Pwd-")
+                    MySQLConfiguration.Standard.ConnectionString("Server=localhost;Port=3306;Database=nhibernate;Uid=root;Pwd=;")
                     .ShowSql()
                     .FormatSql())
                 .Mappings(m =>

@@ -16,5 +16,12 @@ namespace fluentNhibernateautoplay.entidades
         {
         }
         
+
+        public Cliente(string nome, string email, string senha)
+        {
+            this.Nome = nome;
+            this.Email = email;
+            this.Senha = senha;
+        }
     }
 }
