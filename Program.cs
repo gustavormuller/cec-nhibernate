@@ -9,21 +9,15 @@ internal class Program
         ISession session = HibernateUtil.getSession();
         ITransaction transaction = session.BeginTransaction();
 
-        Produto produto1 = new Produto("Caderno", 10.50f);
-        Produto produto2 = new Produto("Caneta", 1.50f);
-        Produto produto3 = new Produto("Borracha", 0.50f);
+        Pedido pedido = session.Get<Pedido>(5);
 
-        IList<Produto> produtos = [produto1, produto2, produto3];
+        IQueryable<Pedido> query = session.Query<Pedido>();
 
-        session.Save(produto1);
-        session.Save(produto2);
-        session.Save(produto3);
+        query = query.Where(pedido => pedido.Cliente.Nome == "Ciclano");
+        
+        IList<Pedido> pedidos = query.ToList();
 
-        Cliente cliente = session.Get<Cliente>(1);
-
-        Pedido pedido = new Pedido(cliente, produtos);
-        session.Save(pedido);
-
+        Console.WriteLine(pedidos[0].Cliente.Nome);
 
         transaction.Commit();
     }
