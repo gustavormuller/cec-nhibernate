@@ -7,11 +7,14 @@ internal class Program
     private static void Main(string[] args)
     {
         ISession session = HibernateUtil.getSession();
+        ITransaction transaction = session.BeginTransaction();
 
-        Cliente cliente = new Cliente("Beltrano", "Beltrano@gmail.com", "senhasegura");
+        Cliente cliente = session.Get<Cliente>(1);
 
-        session.Save(cliente);
+        Pedido pedido = new Pedido(cliente);
 
-        Console.WriteLine((int)session.Save(cliente));
+        session.Save(pedido);
+
+        transaction.Commit();
     }
 }
