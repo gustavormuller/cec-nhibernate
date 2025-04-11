@@ -15,7 +15,6 @@ namespace fluentNhibernateautoplay.entidades
         public Cliente()
         {
         }
-        
 
         public Cliente(string nome, string email, string senha)
         {

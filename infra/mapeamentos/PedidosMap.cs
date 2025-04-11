@@ -16,6 +16,11 @@ namespace fluentNhibernateautoplay.infra.mapeamentos
             Id(pedido => pedido.Id).Column("id");
             Map(pedido => pedido.DataPedido).Column("dataPedido");
             References(pedido => pedido.Cliente).Column("idCliente");
+            HasManyToMany(pedido => pedido.Produtos)
+                .Table("itemProduto")
+                .ParentKeyColumn("idPedido")
+                .ChildKeyColumn("idProduto")
+                .Cascade.All();
         }
     }
 }
